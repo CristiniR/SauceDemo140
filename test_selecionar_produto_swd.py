@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 class Teste_Produtos():
 
 #2.1 Atributos--------------------------------------------------------------------------------------------------------------
-   
+
     url = "https://www.saucedemo.com"                  # endereço site alvo
 
 #2.2 Funções e Métodos-------------------------------------------------------------------------------------------------------
@@ -22,5 +22,9 @@ class Teste_Produtos():
 
     def test_selecionar_produto(self):                 # método de teste
         self.driver.get(self.url)
-        self.driver.find_element(By.ID,"user-name").send_keys("standard_user")          # escreve o login 
-        self.driver.find_element(By.ID,"password").send_keys("secret_sauce")            # escreve a senha 
+        self.driver.find_element(By.ID,"user-name").send_keys("standard_user")           # escreve o login 
+        self.driver.find_element(By.ID,"password").send_keys("secret_sauce")             # escreve a senha 
+        self.driver.find_element(By.ID,"login-button").click()                             # clicar botão login 
+        assert self.driver.find_element(By.CSS_SELECTOR, ".title").text == "Products"    # identificar a palavra PRoducts 
+        assert self.driver.find_element(By.ID, "item_4_title_link").text == "Sauce Labs Backpack"
+        assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item:nth-child(1) .inventory_item_price").text == "$29.99"
